@@ -10,8 +10,10 @@ GraphNode::~GraphNode()
 {
     //// STUDENT CODE
     ////
-
-    delete _chatBot; 
+    /// Task 0: Find the bug leading to segmentation fault
+    /// memory location is deleted without creating
+    /// below line is commented out
+//    delete _chatBot;
 
     ////
     //// EOF STUDENT CODE
