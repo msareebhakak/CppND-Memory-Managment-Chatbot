@@ -22,8 +22,8 @@ private:
 // Take ownership of GraphNodes in ChatLogic
     std::vector<std::unique_ptr<GraphNode>> _nodes;
 
-    std::vector<GraphEdge *> _edges;
-
+//    std::vector<GraphEdge *> _edges;
+    std::vector<std::unique_ptr<GraphEdge>> _edges;
     ////
     //// EOF STUDENT CODE
 
