@@ -5,6 +5,7 @@
 #include <iterator>
 #include <tuple>
 #include <algorithm>
+#include <utility>
 
 #include "graphedge.h"
 #include "graphnode.h"
@@ -18,10 +19,10 @@ ChatLogic::ChatLogic()
     ////
 
     // create instance of chatbot
-    _chatBot = new ChatBot("../images/chatbot.png");
+//    _chatBot = new ChatBot("../images/chatbot.png");
 
     // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
-    _chatBot->SetChatLogicHandle(this);
+//    _chatBot->SetChatLogicHandle(this);
 
     ////
     //// EOF STUDENT CODE
@@ -33,7 +34,7 @@ ChatLogic::~ChatLogic()
     ////
 
     // delete chatbot instance
-    delete _chatBot;
+//    delete _chatBot;
 
     // delete all nodes
     // No need to delete as nodes are now replaced with unique_ptr
@@ -219,9 +220,14 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
         }
     }
 
+    ChatBot _chatBot("../images/chatbot.png");
+
+    // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
+    _chatBot.SetChatLogicHandle(this);
+
     // add chatbot to graph root node
-    _chatBot->SetRootNode(rootNode);
-    rootNode->MoveChatbotHere(_chatBot);
+    _chatBot.SetRootNode(rootNode);
+    rootNode->MoveChatbotHere(std::move(_chatBot));
     
     ////
     //// EOF STUDENT CODE
